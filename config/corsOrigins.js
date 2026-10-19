@@ -2,10 +2,10 @@
 // Format: 'chrome-extension://YOUR_REAL_EXTENSION_ID'
 // Replace the example values; do not leave placeholders as real origins.
 const extensionOrigins = [
-  // 'chrome-extension://bcdbapldibhhhpmobclnkajohljfamaf',
-  // 'chrome-extension://mhmmkocfhhpbiollkidalblgbaigbhhi',
-  // 'chrome-extension://cniecekdljiiheddfplpbobgcjnljmio',
-  // 'chrome-extension://ghoingfphefgbndokhfoebhakdklhpcg',
+     'chrome-extension://bcdbapldibhhhpmobclnkajohljfamaf',
+     'chrome-extension://mhmmkocfhhpbiollkidalblgbaigbhhi',
+     'chrome-extension://cniecekdljiiheddfplpbobgcjnljmio',
+     'chrome-extension://ghoingfphefgbndokhfoebhakdklhpcg',
   // 'chrome-extension://PASTE_EXTENSION_ID_05',
   // 'chrome-extension://PASTE_EXTENSION_ID_06',
   // 'chrome-extension://PASTE_EXTENSION_ID_07',
