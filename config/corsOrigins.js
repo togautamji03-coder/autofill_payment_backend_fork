@@ -14,9 +14,10 @@ const extensionOrigins = [
      'chrome-extension://nlmiljemmgdhfljbfikdmpkkbkagindk',
      'chrome-extension://hggojcglehjbdmkejikmdecknimhifpe',
      'chrome-extension://efgpeoakgfeihohljdeghppjicieldbg',
-  // 'chrome-extension://PASTE_EXTENSION_ID_09',
-  // 'chrome-extension://PASTE_EXTENSION_ID_10',
-  // 'chrome-extension://PASTE_EXTENSION_ID_11',
+     
+     'chrome-extension://gpacehanggodblkohadikpojdlkfmodk',
+     'chrome-extension://fhdddmpfikcimnjnflenphenmenbijjl',
+     'chrome-extension://amgedpghaiiijabeckjhnmjilndjlcdp',
   // 'chrome-extension://PASTE_EXTENSION_ID_12',
   // 'chrome-extension://PASTE_EXTENSION_ID_13',
   // 'chrome-extension://PASTE_EXTENSION_ID_14',
