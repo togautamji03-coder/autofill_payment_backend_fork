@@ -6,6 +6,7 @@ const Razorpay = require('razorpay');
 const { MongoClient, ObjectId } = require('mongodb');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const https = require('https');
 
 const app = express();
 app.use(express.json({ limit: '32kb' }));
@@ -291,7 +292,26 @@ app.get('/api/payment-status/:orderId', authRequired, async (req, res) => {
     res.json({ orderId: record.order_id, status: record.status, profileId: record.profile_id || null, is_active: profile ? (profile.is_active === true || Boolean(profile.source_order_id)) : false });
   } catch (e) { console.error('payment-status failed:', e.message); res.status(500).json({ error: 'Could not check payment status.' }); }
 });
+// Self-ping every 14 minutes. Note: Render Free may still spin down free services.
+const RENDER_URL = (process.env.RENDER_URL || 'https://autofill-payment-backend-fork.onrender.com').replace(/\/$/, '');
+const PING_INTERVAL = 14 * 60 * 1000;
+
 (async () => {
-  try { await initDb(); app.listen(PORT, () => console.log(`Payment backend listening on port ${PORT}; persistent MongoDB connected.`)); }
-  catch (e) { console.error('Database initialization failed:', e.message); process.exit(1); }
+  try {
+    await initDb();
+    app.listen(PORT, () => {
+      console.log(`Payment backend listening on port ${PORT}; persistent MongoDB connected.`);
+      setInterval(() => {
+        https.get(`${RENDER_URL}/health`, (res) => {
+          console.log(`Self-ping response status: ${res.statusCode}`);
+          res.resume();
+        }).on('error', (err) => {
+          console.error('Self-ping failed:', err.message);
+        });
+      }, PING_INTERVAL);
+    });
+  } catch (e) {
+    console.error('Database initialization failed:', e.message);
+    process.exit(1);
+  }
 })();
